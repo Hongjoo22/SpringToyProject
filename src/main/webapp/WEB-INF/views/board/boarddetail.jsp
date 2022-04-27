@@ -2,7 +2,7 @@
 <%@ include file="/WEB-INF/views/include/header.jsp" %>
 <html>
 <head>
-	<title>boardlist</title>
+	<title>boardDetail</title>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>	
 	<style type="text/css">
 		#_table{
@@ -14,7 +14,7 @@
 </head>
 <body>
 <h1>
-	THIS IS boardlist
+	THIS IS boardDetail
 </h1>
 <script type="text/javascript">
 $(document).ready(function(){
@@ -49,7 +49,7 @@ function boardlist(result){
 		str += (index+1);
 		str += "</td>";
 		str += "<td>";
-		str += "<a href='${root}/board/boarddetail/${item.articleno}'>"+item.title+"</a>";
+		str += "<a href='/board/boarddetail'>"+item.title+"</a>";
 		str += "</td>";
 		str += "<td>";
 		str += item.userid;

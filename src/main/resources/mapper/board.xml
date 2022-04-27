@@ -9,7 +9,7 @@
 		order by articleno 
 	</select>
 	<insert id="boardWrite" parameterType="BoardDto">
-		insert into board(articleno, title, content, userid, regtime)
+		insert into board(title, content, userid, regtime)
 		values(#{title}, #{content}, #{userid}, now())
 		where articleno = #{articleno}
 	</insert>
