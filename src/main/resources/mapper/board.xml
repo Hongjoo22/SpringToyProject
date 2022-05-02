@@ -11,7 +11,6 @@
 	<insert id="boardWrite" parameterType="BoardDto">
 		insert into board(title, content, userid, regtime)
 		values(#{title}, #{content}, #{userid}, now())
-		where articleno = #{articleno}
 	</insert>
 	<update id="boardUpdate" parameterType="BoardDto">
 		update board set title=#{title}, content=#{content}, regtime=now()

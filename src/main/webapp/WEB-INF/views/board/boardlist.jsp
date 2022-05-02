@@ -11,11 +11,6 @@
 			text-align: center;
 		}
 	</style>
-</head>
-<body>
-<h1>
-	THIS IS boardlist
-</h1>
 <script type="text/javascript">
 $(document).ready(function(){
 	$("#_btn").click(function(){
@@ -28,7 +23,14 @@ $(document).ready(function(){
 			}
 		}); 
 	});
+	
+	
+	$("#_btnhidden").click(function(){
+		$("#_showtable").empty();
+	})
+	
 });
+
 function boardlist(result){
 	$("#_showtable").empty();
 	var str="<table id='_table'>";
@@ -49,7 +51,7 @@ function boardlist(result){
 		str += (index+1);
 		str += "</td>";
 		str += "<td>";
-		str += "<a href='${root}/board/boarddetail/${item.articleno}'>"+item.title+"</a>";
+		str += "<a href='boarddetail?articleno="+item.articleno+"' >"+item.title+"</a>";
 		str += "</td>";
 		str += "<td>";
 		str += item.userid;
@@ -63,10 +65,17 @@ function boardlist(result){
 	$("#_showtable").html(str);
 }
 </script>
+</head>
+<body>
+<h1>
+	THIS IS boardlist
+</h1>
 <div>
 	<button id="_btn">게시판 목록보기</button>
+	<button id="_btnhidden">게시판 목록숨기기</button>
 </div>
 <div id="_showtable"></div>
 <a href="../">HOME</a>
+<a href="mvboardwrite">글작성</a>
 </body>
 </html>

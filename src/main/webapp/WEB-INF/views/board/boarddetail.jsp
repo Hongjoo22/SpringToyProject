@@ -18,6 +18,7 @@
 </h1>
 <script type="text/javascript">
 $(document).ready(function(){
+	$("#_boardmodify").hide();
 	$("#_btn").click(function(){
 		//alert("왔나?");
 		 $.ajax({
@@ -28,6 +29,23 @@ $(document).ready(function(){
 			}
 		}); 
 	});
+	$("#_btnhidden").click(function(){
+		$("#_showtable").empty();
+	})
+	$("#_btnmodify").click(function(){
+		$("#_boardshow").hide();
+		$("#_btnmodify").hide();
+		$("#_boardmodify").show();
+	})
+	$("#_modifycancel").click(function(){
+		$("#_boardmodify").hide();
+		$("#_boardshow").show();
+		$("#_btnmodify").show();
+	})
+	$("#_modify").click(function(){
+		$("#_modi").attr("action","boardmodify").submit();
+		alert()
+	})
 });
 function boardlist(result){
 	$("#_showtable").empty();
@@ -49,7 +67,7 @@ function boardlist(result){
 		str += (index+1);
 		str += "</td>";
 		str += "<td>";
-		str += "<a href='/board/boarddetail'>"+item.title+"</a>";
+		str += "<a href='boarddetail?articleno="+item.articleno+"'>"+item.title+"</a>";
 		str += "</td>";
 		str += "<td>";
 		str += item.userid;
@@ -63,8 +81,55 @@ function boardlist(result){
 	$("#_showtable").html(str);
 }
 </script>
+
+<div id="_boardshow">
+<table>
+<c:if test="${not empty board}">
+<tr>
+<th>글번호</th><td>${board.articleno}</td>
+</tr>
+<tr>
+<th>작성자</th><td>${board.userid}</td>
+</tr>
+<tr>
+<th>제목</th><td>${board.title}</td>
+</tr>
+<tr>
+<th>내용</th><td><textarea cols="100" rows="30" readonly="readonly" style=" resize: none;">${board.content}</textarea></td>
+</tr>
+</c:if>
+</table>
+</div>
+<div id="_boardmodify">
+<form action="" id="_modi" method="post">
+<table>
+<c:if test="${not empty board}">
+<tr>
+<th>글번호</th><td>${board.articleno}</td>
+</tr>
+<tr>
+<th>작성자</th><td>${board.userid}</td>
+</tr>
+<tr>
+<th>제목</th><td><input value="${board.title}"></td>
+</tr>
+<tr>
+<th>내용</th><td><textarea cols="100" rows="30" style=" resize: none;">${board.content}</textarea></td>
+</tr>
+<tr>
+<td><button id="_modifycancel">수정 취소</button></td>
+<td><button id="_modify">글 수정</button></td>
+<input type="hidden" name="title" value="${board.title}" />
+<input type="hidden" name="userid" value="${board.userid}" />
+</tr>
+</c:if>
+</table>
+</form>
+</div>
 <div>
 	<button id="_btn">게시판 목록보기</button>
+	<button id="_btnhidden">게시판 목록숨기기</button>
+	<button id="_btnmodify">글 수정</button>
 </div>
 <div id="_showtable"></div>
 <a href="../">HOME</a>
