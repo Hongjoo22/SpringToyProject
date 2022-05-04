@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.toy.spring.model.BoardDto;
 import com.toy.spring.model.service.BoardService;
@@ -52,10 +53,10 @@ public class BoardController {
 	}
 	
 	@PostMapping(value = "/boardmodify")
-	public String boardmodify(BoardDto board, Model model) throws SQLException {
+	public String boardmodify(BoardDto board, Model model, RedirectAttributes redirect) throws SQLException {
 		logger.debug("BoardController boardmodify");
 		boardService.boardUpdate(board);
-		return "redirect:/board/boarddetail";
+		return "redirect:/board/boardlist";
 	}
 //	@GetMapping(value = "/boarddetail/{articleno}")
 //	@ResponseBody
@@ -75,6 +76,12 @@ public class BoardController {
 	public String boardwrite(BoardDto board, Model model) throws SQLException {
 		logger.debug("BoardController boardwrite");
 		boardService.boardWrite(board);
+		return "redirect:/board/boardlist";
+	}
+	@GetMapping(value = "/boarddelete")
+	public String boarddelete(int articleno, Model model) throws SQLException {
+		logger.debug("BoardController boarddelete");
+		boardService.boardDelete(articleno);
 		return "redirect:/board/boardlist";
 	}
 	

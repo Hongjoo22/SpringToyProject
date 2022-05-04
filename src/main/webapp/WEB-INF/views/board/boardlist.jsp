@@ -13,7 +13,11 @@
 	</style>
 <script type="text/javascript">
 $(document).ready(function(){
+	$('#_btn').show();
+	$('#_btnhidden').hide();
 	$("#_btn").click(function(){
+		$('#_btn').hide();
+		$('#_btnhidden').show();
 		//alert("왔나?");
 		 $.ajax({
 			url: "${root}/board/showboardlist",
@@ -27,6 +31,8 @@ $(document).ready(function(){
 	
 	$("#_btnhidden").click(function(){
 		$("#_showtable").empty();
+		$('#_btn').show();
+		$('#_btnhidden').hide();
 	})
 	
 });

@@ -4,14 +4,20 @@
 
 <mapper namespace="com.toy.spring.model.mapper.UserMapper">
 
-<!-- 	<select id="boardlist" resultType="BoardDto">
-		select articleno, title, userid, regtime from board
-		order by articleno 
+ 	<select id="login" parameterType="UserDto" resultType="UserDto">
+		select userid, userpwd, username, useremail, joindate, status from user
+		where userid = #{userid} and userpwd = #{userpwd}
 	</select>
-	<insert id="boardWrite" parameterType="BoardDto">
-		insert into board(articleno, title, content, userid, regtime)
-		values(#{title}, #{content}, #{userid}, now())
-		where articleno = #{articleno}
+	<insert id="signUp" parameterType="BoardDto">
+		insert into user(userid, userpwd, username, useremail, joindate)
+		values(#{userid}, #{userpwd}, #{username}, #{useremail}, now())
 	</insert>
- -->
+ 	<select id="idCheck" parameterType="string" resultType="int">
+		select count(*) from user
+		where userid = #{userid} 
+	</select>
+	<update id="userupdate">
+		update user set userpwd = #{userpwd}, username = #{username},
+		useremail = #{useremail} where userid = #{userid}
+	</update>
 </mapper>

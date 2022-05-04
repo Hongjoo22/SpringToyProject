@@ -38,7 +38,7 @@ $(document).ready(function(){
 <form id="_boardwrite" action="" method="post" > <!-- 비동기 방식-->
 <table>
 <tr>
-<th>작성자</th><td><input id="_userid" type="text" name="userid"/></td>
+<th>작성자</th><td>${login.userid}</td>
 </tr>
 <tr>
 <th>제목</th><td><input id="_title" type="text" placeholder="제목을 입력하세요." name="title"/></td>
@@ -54,6 +54,7 @@ $(document).ready(function(){
 <td colspan="2"><button type="reset">초기화</button></td>
 </tr>
 </table>
+<input id="_userid" type="hidden" name="userid" value="${login.userid}"/>
 </form>
 <!-- </form> -->
 </div>
