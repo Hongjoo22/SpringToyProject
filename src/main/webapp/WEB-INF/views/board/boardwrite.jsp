@@ -1,34 +1,5 @@
 <%@page contentType="text/html; charset=UTF-8" %>
 <%@ include file="/WEB-INF/views/include/header.jsp" %>
-<html>
-<head>
-	<title>boardWrite</title>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>	
-	<style type="text/css">
-		#_table{
-			margin: auto;
-			border: 1px solid black;
-			text-align: center;
-		}
-		
-	</style>
-<script type="text/javascript">
-$(document).ready(function(){
-	$("#_btn").click(function(){
-		if(!$("#_title").val()){
-			alert("제목을 입력하세요."); 
-			return;
-		}else if(!$("#_content").val()){
-			alert("내용을 입력하세요.");
-			return;
-		}else{
-			$("#_boardwrite").attr("action","boardwrite").submit(); // 비동기 방식			
-		}
-	});
-});
-
-</script>
-</head>
 <body>
 <h1>
 	THIS IS boardWrite
@@ -61,4 +32,19 @@ $(document).ready(function(){
 <a href="../">HOME</a>
 <a href="boardlist">글목록보러가기</a>
 </body>
+<script type="text/javascript">
+$(document).ready(function(){
+	$("#_btn").click(function(){
+		if(!$("#_title").val()){
+			alert("제목을 입력하세요."); 
+			return;
+		}else if(!$("#_content").val()){
+			alert("내용을 입력하세요.");
+			return;
+		}else{
+			$("#_boardwrite").attr("action","boardwrite").submit(); // 비동기 방식			
+		}
+	});
+});
+</script>
 </html>

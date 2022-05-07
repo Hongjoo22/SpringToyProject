@@ -1,21 +1,67 @@
 <%@page contentType="text/html; charset=UTF-8" %>
 <%@ include file="/WEB-INF/views/include/header.jsp" %>
-<html>
-<head>
-	<title>boardDetail</title>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>	
-	<style type="text/css">
-		#_table{
-			margin: auto;
-			border: 1px solid black;
-			text-align: center;
-		}
-	</style>
-</head>
 <body>
 <h1>
 	THIS IS boardDetail
 </h1>
+<div id="_boardshow">
+<table>
+<c:if test="${not empty board}">
+<tr>
+<th>글번호</th><td>${board.articleno}</td>
+</tr>
+<tr>
+<th>작성자</th><td>${board.userid}</td>
+</tr>
+<tr>
+<th>제목</th><td>${board.title}</td>
+</tr>
+<tr>
+<th>내용</th><td><textarea cols="100" rows="30" readonly="readonly" style=" resize: none;">${board.content}</textarea></td>
+</tr>
+</c:if>
+</table>
+</div>
+<div id="_boardmodify">
+<form action="" id="_modi" method="post">
+<table>
+<c:if test="${not empty board}">
+<tr>
+<th>글번호</th><td>${board.articleno}</td>
+</tr>
+<tr>
+<th>작성자</th><td>${board.userid}</td>
+</tr>
+<tr>
+<th>제목</th><td><input   name="title" value="${board.title}"></td>
+</tr>
+<tr>
+<th>내용</th><td><textarea cols="100" rows="30" name="content"  style=" resize: none;">${board.content}</textarea></td>
+</tr>
+<tr>
+<td><button type="button" id="_modifycancel">수정 취소</button></td>
+<td><button id="_modify">글 수정</button></td>
+</tr>
+</c:if>
+</table>
+<input type="hidden" name="userid" value="${board.userid}" />
+<input type="hidden" name="articleno" value="${board.articleno}" />
+</form>
+</div>
+<div>
+	<button id="_btn">게시판 목록보기</button>
+	<button id="_btnhidden">게시판 목록숨기기</button>
+	<c:if test="${login.userid eq board.userid}">
+	<button id="_btnmodify">글 수정</button>
+	<form action="${root}/board/boarddelete" method="get" style="display: inline-block;" >
+	<button type="submit" id="_btndelete">글 삭제</button>
+	<input type="hidden" name="articleno" value="${board.articleno}"/>
+	</form>
+	</c:if>
+</div>
+<div id="_showtable"></div>
+<a href="../">HOME</a>
+</body>
 <script type="text/javascript">
 $(document).ready(function(){
 	$('#_btn').show();
@@ -87,63 +133,4 @@ function boardlist(result){
 	$("#_showtable").html(str);
 }
 </script>
-
-<div id="_boardshow">
-<table>
-<c:if test="${not empty board}">
-<tr>
-<th>글번호</th><td>${board.articleno}</td>
-</tr>
-<tr>
-<th>작성자</th><td>${board.userid}</td>
-</tr>
-<tr>
-<th>제목</th><td>${board.title}</td>
-</tr>
-<tr>
-<th>내용</th><td><textarea cols="100" rows="30" readonly="readonly" style=" resize: none;">${board.content}</textarea></td>
-</tr>
-</c:if>
-</table>
-</div>
-<div id="_boardmodify">
-<form action="" id="_modi" method="post">
-<table>
-<c:if test="${not empty board}">
-<tr>
-<th>글번호</th><td>${board.articleno}</td>
-</tr>
-<tr>
-<th>작성자</th><td>${board.userid}</td>
-</tr>
-<tr>
-<th>제목</th><td><input   name="title" value="${board.title}"></td>
-</tr>
-<tr>
-<th>내용</th><td><textarea cols="100" rows="30" name="content"  style=" resize: none;">${board.content}</textarea></td>
-</tr>
-<tr>
-<td><button type="button" id="_modifycancel">수정 취소</button></td>
-<td><button id="_modify">글 수정</button></td>
-</tr>
-</c:if>
-</table>
-<input type="hidden" name="userid" value="${board.userid}" />
-<input type="hidden" name="articleno" value="${board.articleno}" />
-</form>
-</div>
-<div>
-	<button id="_btn">게시판 목록보기</button>
-	<button id="_btnhidden">게시판 목록숨기기</button>
-	<c:if test="${login.userid eq board.userid}">
-	<button id="_btnmodify">글 수정</button>
-	<form action="${root}/board/boarddelete" method="get" style="display: inline-block;" >
-	<button type="submit" id="_btndelete">글 삭제</button>
-	<input type="hidden" name="articleno" value="${board.articleno}"/>
-	</form>
-	</c:if>
-</div>
-<div id="_showtable"></div>
-<a href="../">HOME</a>
-</body>
 </html>

@@ -1,16 +1,18 @@
 <%@page contentType="text/html; charset=UTF-8" %>
 <%@ include file="/WEB-INF/views/include/header.jsp" %>
-<html>
-<head>
-	<title>boardlist</title>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>	
-	<style type="text/css">
-		#_table{
-			margin: auto;
-			border: 1px solid black;
-			text-align: center;
-		}
-	</style>
+<body>
+<h1>
+	THIS IS boardlist
+</h1>
+<div>
+	<button id="_btn">게시판 목록보기</button>
+	<button id="_btnhidden">게시판 목록숨기기</button>
+</div>
+<div id="_showtable"></div>
+<a href="../">HOME</a>
+<a href="mvboardwrite">글작성</a>
+</body>
+
 <script type="text/javascript">
 $(document).ready(function(){
 	$('#_btn').show();
@@ -71,17 +73,4 @@ function boardlist(result){
 	$("#_showtable").html(str);
 }
 </script>
-</head>
-<body>
-<h1>
-	THIS IS boardlist
-</h1>
-<div>
-	<button id="_btn">게시판 목록보기</button>
-	<button id="_btnhidden">게시판 목록숨기기</button>
-</div>
-<div id="_showtable"></div>
-<a href="../">HOME</a>
-<a href="mvboardwrite">글작성</a>
-</body>
 </html>

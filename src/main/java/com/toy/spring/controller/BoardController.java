@@ -84,5 +84,5 @@ public class BoardController {
 		boardService.boardDelete(articleno);
 		return "redirect:/board/boardlist";
 	}
-	
+
 }

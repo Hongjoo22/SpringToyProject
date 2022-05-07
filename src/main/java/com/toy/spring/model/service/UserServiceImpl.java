@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.toy.spring.model.UserDto;
 import com.toy.spring.model.mapper.UserMapper;
@@ -16,9 +17,10 @@ public class UserServiceImpl implements UserService {
 	SqlSession sqlSession;
 	
 	@Override
-	public int idCheck(String userid) throws SQLException {
-		// TODO Auto-generated method stub
-		return 0;
+	@Transactional(readOnly = true)
+	public String idCheck(String userid) throws SQLException {
+		UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+		return ""+userMapper.idCheck(userid);
 	}
 
 	@Override

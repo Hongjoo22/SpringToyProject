@@ -66,5 +66,11 @@ public class UserController {
 		userService.signUp(user);
 		return "redirect:../";
 	}
+	@GetMapping(value = "/idcheck")
+	@ResponseBody
+	public String idcheck(String userid) throws SQLException {
+		logger.debug("UserController idcheck");
+		return userService.idCheck(userid)+"";
+	}
 	
 }
